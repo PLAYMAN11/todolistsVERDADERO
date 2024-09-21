@@ -12,12 +12,19 @@ const TodoItem = ({ task, index, toggleCompletion, deleteTask }) => {
                 margin: '5px 0',
             }}
         >
-      <span onClick={() => toggleCompletion(index)} style={{ cursor: 'pointer' }}>
+      <span>
         {task.text}
       </span>
             <motion.button
+            onClick={() => toggleCompletion(index)}
+            style={{ marginLeft: '5px' }}
+            >
+                Completar
+            </motion.button>
+
+            <motion.button
                 animate={{x:100}}
-                onClick={() => deleteTask(index)} style={{ marginLeft: '10px' }}>
+                onClick={() => deleteTask(index)} style={{ marginLeft: '5px' }}>
                 Eliminar
             </motion.button>
         </motion.li>
