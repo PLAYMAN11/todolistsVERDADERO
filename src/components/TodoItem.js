@@ -25,8 +25,16 @@ const TodoItem = ({ task, index, toggleCompletion, deleteTask }) => {
                 padding: '10px',
             }}
         >
-            <span style={{ marginRight: '10px', wordWrap: 'break-word', width: '100%' }}>
-                {task.title}
+            <span>
+                <h3
+                style={{marginTop: -5}}
+                >{task.title} {(task.completed ? "(Completado)": "")}</h3>
+            </span>
+            <span style={{
+                wordWrap: 'break-word',
+                width: '100%',
+                margin: '0 10px 20px 0'}}
+            >
                 {task.text}
             </span>
             <div style={{ display: 'flex', marginTop: '5px', gap: '10px' }}>
@@ -46,8 +54,8 @@ const TodoItem = ({ task, index, toggleCompletion, deleteTask }) => {
                 <motion.button
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.8 }}
-                    style={Background}
                     onClick={() => deleteTask(index)}
+                    style={Background}
                 >
                     Eliminar
                 </motion.button>

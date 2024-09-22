@@ -29,7 +29,6 @@ li {
 }
 
 button {
-  margin-left: 10%;
   border: none;
   background-color: blue;
   color: white;
@@ -48,5 +47,5 @@ h2{
 
 }
 .contenedorPrincipal{
-  margin-left: 5%;
+  margin-left: 2.5%;
 }

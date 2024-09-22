@@ -12,7 +12,7 @@ function App() {
                 >Lista de Tareas</motion.h1>
             </header>
             <div className={classes.contenedorPrincipal}>
-              <></>
+
                 <motion.h2
                 transition={{
                     duration: 1,
