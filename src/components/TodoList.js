@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const TodoList = () => {
     const [tasks, setTasks] = useState([]);
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue1, setInputValue1] = useState('');
+    const [inputValue2, setInputValue2] = useState('')
 
     const addTask = () => {
-        if (inputValue) {
-            setTasks([...tasks, { text: inputValue, completed: false }]);
-            setInputValue('');
+        if (inputValue1 && inputValue2) {
+            setTasks([...tasks, { title: inputValue1, text: inputValue2, completed: false }]);
+            setInputValue1('');
+            setInputValue2('')
         }
     };
 
@@ -21,30 +23,51 @@ const TodoList = () => {
     };
 
     const deleteTask = (index) => {
-
         const newTasks = tasks.filter((_, i) => i !== index);
         setTasks(newTasks);
     };
 
     return (
         <div>
+            <form>
+                <input
+                type="text"
+                value={inputValue1}
+                onChange={(e) => setInputValue1(e.target.value)}
+                placeholder="Titulo de la tarea..."
+                style={{margin: '0 0 3% 0'}}
+                ></input>
+<br></br>
             <input
                 type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Añadir tarea..."
+                value={inputValue2}
+                onChange={(e) => setInputValue2(e.target.value)}
+                placeholder="Descripcion de la tarea..."
             />
             <button onClick={addTask}>Añadir</button>
+            </form>
+            <motion.h2>Tareas</motion.h2>
             <motion.ul>
-                {tasks.map((task, index) => (
-                    <TodoItem
-                        key={index}
-                        task={task}
-                        index={index}
-                        toggleCompletion={toggleTaskCompletion}
-                        deleteTask={deleteTask}
-                    />
-                ))}
+                <AnimatePresence>
+                    {tasks.map((task, index) => (
+                        <motion.li
+                            key={index}
+                            initial={{ opacity: 0, width: 0 }}
+                            animate={{ opacity: 1, width: 'auto' }}
+                            exit={{ opacity: 0, width: 0 }}
+                            transition={{ duration: 0.5 }}
+                            style={{border: '1px solid #ccc',
+                                borderRadius: '3px'}}
+                        >
+                            <TodoItem
+                                task={task}
+                                index={index}
+                                toggleCompletion={toggleTaskCompletion}
+                                deleteTask={deleteTask}
+                            />
+                        </motion.li>
+                    ))}
+                </AnimatePresence>
             </motion.ul>
         </div>
     );

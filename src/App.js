@@ -7,12 +7,21 @@ function App() {
     return (
         <div>
             <header className={classes.header}>
+                <motion.h1
 
-                <h1>Lista de Tareas</h1>
-
-
+                >Lista de Tareas</motion.h1>
             </header>
-            <TodoList />
+            <div className={classes.contenedorPrincipal}>
+              <></>
+                <motion.h2
+                transition={{
+                    duration: 1,
+
+                }}
+                >Agregar Tarea</motion.h2>
+                <TodoList/>
+
+            </div>
         </div>
     );
 }
